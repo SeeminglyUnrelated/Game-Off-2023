@@ -11,4 +11,4 @@ func _on_quit_button_pressed():
 func _on_start_button_pressed():
 	ButtonSound.play()
 	await ButtonSound.finished # ButtonSound.play doesn't wait for sound to finish so we have to do it ourselves
-	SceneTransition.change_scene("res://Scenes/game.tscn", "dissolve")
+	SceneTransition.change_scene("res://Scenes/game.tscn", "wipe")
