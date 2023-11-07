@@ -1,3 +1,6 @@
+# Paul made this code
+# Add any contributors below
+
 extends CanvasLayer
 
 func change_scene(target : String, type : String = "dissolve") -> void:
