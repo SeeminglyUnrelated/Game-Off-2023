@@ -1,4 +1,4 @@
-extends Node2D
+extends Sprite2D
 
 @export var Size_Normal = 2
 @export var Size_Hovered = 4

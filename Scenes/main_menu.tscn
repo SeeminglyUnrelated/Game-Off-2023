@@ -1,25 +1,52 @@
-[gd_scene load_steps=5 format=3 uid="uid://cec2xsnyt2sh"]
+[gd_scene load_steps=8 format=3 uid="uid://cec2xsnyt2sh"]
 
-[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_7yxm3"]
+[ext_resource type="Script" path="res://Scripts/UI/main_menu.gd" id="1_ykgek"]
+[ext_resource type="Texture2D" uid="uid://bijhpywdq1i0n" path="res://Sprites/Menu_Background.png" id="2_do7hj"]
 [ext_resource type="Texture2D" uid="uid://bstbr5hn3ynl" path="res://Sprites/Player.png" id="2_txly5"]
-[ext_resource type="Script" path="res://Scripts/MainMenuIcon.gd" id="3_1ayki"]
 [ext_resource type="Texture2D" uid="uid://bjjfh5iuncowr" path="res://Sprites/Button/normal.png" id="3_dsaq5"]
+[ext_resource type="Script" path="res://Scripts/UI/MainMenuIcon.gd" id="4_36h2w"]
+[ext_resource type="FontFile" uid="uid://bpqweb7smn8tk" path="res://Font/OldEnglishGothicPixelRegular-ow2Bo.ttf" id="5_3p6ey"]
+[ext_resource type="AudioStream" uid="uid://cijnguvtv8omv" path="res://SFX/Button_pressed.wav" id="7_85twk"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("ButtonSound")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7yxm3")
+script = ExtResource("1_ykgek")
+ButtonSound = NodePath("ButtonSound")
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.458824, 0.458824, 0.458824, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_do7hj")
 
 [node name="MainMenuIcon" type="Sprite2D" parent="."]
 position = Vector2(112, 544)
 rotation = 0.777894
 scale = Vector2(2, 2)
 texture = ExtResource("2_txly5")
-script = ExtResource("3_1ayki")
+script = ExtResource("4_36h2w")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 88.0
+offset_bottom = 130.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_3p6ey")
+theme_override_font_sizes/font_size = 50
+text = "Game name goes here"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 1
@@ -27,11 +54,13 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 512.0
-offset_top = 128.0
+offset_top = 232.0
 offset_right = -520.0
-offset_bottom = -456.0
+offset_bottom = -352.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_3p6ey")
+theme_override_font_sizes/font_size = 30
 text = "Start"
 icon = ExtResource("3_dsaq5")
 icon_alignment = 1
@@ -43,17 +72,24 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 512.0
-offset_top = 256.0
+offset_top = 320.0
 offset_right = -520.0
-offset_bottom = -328.0
+offset_bottom = -264.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_3p6ey")
+theme_override_font_sizes/font_size = 30
 text = "Quit"
 icon = ExtResource("3_dsaq5")
 icon_alignment = 1
 expand_icon = true
 
+[node name="ButtonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_85twk")
+
 [connection signal="mouse_entered" from="." to="MainMenuIcon" method="_on_main_menu_mouse_entered"]
 [connection signal="mouse_exited" from="." to="MainMenuIcon" method="_on_main_menu_mouse_exited"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="StartButton" to="ButtonSound" method="_on_start_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="ButtonSound" method="_on_quit_button_pressed"]
