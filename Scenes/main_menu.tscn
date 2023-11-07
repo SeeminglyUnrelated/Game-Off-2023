@@ -1,6 +1,61 @@
-[gd_scene load_steps=2 format=3 uid="uid://cec2xsnyt2sh"]
+[gd_scene load_steps=15 format=3 uid="uid://cec2xsnyt2sh"]
 
-[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_7yxm3"]
+[ext_resource type="Script" path="res://Scripts/UI/main_menu.gd" id="1_ykgek"]
+[ext_resource type="Texture2D" uid="uid://bijhpywdq1i0n" path="res://Sprites/Menu_Background.png" id="2_do7hj"]
+[ext_resource type="AudioStream" uid="uid://bepsosuntbulc" path="res://SFX/ButtonNoises/button_pressed_1.wav" id="2_juah5"]
+[ext_resource type="Texture2D" uid="uid://bstbr5hn3ynl" path="res://Sprites/Player.png" id="2_txly5"]
+[ext_resource type="Texture2D" uid="uid://bjjfh5iuncowr" path="res://Sprites/Button/normal.png" id="3_dsaq5"]
+[ext_resource type="AudioStream" uid="uid://b3s3l7xbg70m7" path="res://SFX/ButtonNoises/button_pressed_2.wav" id="3_l2254"]
+[ext_resource type="Script" path="res://Scripts/UI/MainMenuIcon.gd" id="4_36h2w"]
+[ext_resource type="AudioStream" uid="uid://dckwotxrr60is" path="res://SFX/ButtonNoises/button_pressed_3.wav" id="4_btp04"]
+[ext_resource type="FontFile" uid="uid://bpqweb7smn8tk" path="res://Font/OldEnglishGothicPixelRegular-ow2Bo.ttf" id="5_3p6ey"]
+[ext_resource type="AudioStream" uid="uid://cmsirwmvvmetr" path="res://SFX/ButtonNoises/button_hover.wav" id="10_0bwx6"]
+
+[sub_resource type="Animation" id="Animation_wu0va"]
+resource_name = "scaleUp"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenuIcon:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(4, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_pjkmg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenuIcon:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rjx50"]
+_data = {
+"RESET": SubResource("Animation_pjkmg"),
+"scaleUp": SubResource("Animation_wu0va")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o6il2"]
+streams_count = 3
+stream_0/stream = ExtResource("2_juah5")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_l2254")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("4_btp04")
+stream_2/weight = 1.0
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -9,33 +64,95 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7yxm3")
+script = ExtResource("1_ykgek")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rjx50")
+}
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.458824, 0.458824, 0.458824, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_do7hj")
+
+[node name="MainMenuIcon" type="Sprite2D" parent="."]
+position = Vector2(112, 544)
+rotation = 0.777894
+scale = Vector2(2, 2)
+texture = ExtResource("2_txly5")
+script = ExtResource("4_36h2w")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 88.0
+offset_bottom = 130.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_3p6ey")
+theme_override_font_sizes/font_size = 50
+text = "Game name goes here"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 392.0
-offset_top = 128.0
-offset_right = -448.0
-offset_bottom = -456.0
+offset_left = 512.0
+offset_top = 232.0
+offset_right = -520.0
+offset_bottom = -352.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_3p6ey")
+theme_override_font_sizes/font_size = 30
 text = "Start"
+icon = ExtResource("3_dsaq5")
+icon_alignment = 1
+expand_icon = true
 
 [node name="QuitButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 392.0
-offset_top = 256.0
-offset_right = -448.0
-offset_bottom = -328.0
+offset_left = 512.0
+offset_top = 320.0
+offset_right = -520.0
+offset_bottom = -264.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_3p6ey")
+theme_override_font_sizes/font_size = 30
 text = "Quit"
+icon = ExtResource("3_dsaq5")
+icon_alignment = 1
+expand_icon = true
 
+[node name="SFX" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ButtonSound" type="AudioStreamPlayer" parent="SFX"]
+stream = SubResource("AudioStreamRandomizer_o6il2")
+
+[node name="ButtonSound_Hover" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("10_0bwx6")
+
+[connection signal="mouse_entered" from="." to="MainMenuIcon" method="_on_main_menu_mouse_entered"]
+[connection signal="mouse_exited" from="." to="MainMenuIcon" method="_on_main_menu_mouse_exited"]
+[connection signal="mouse_entered" from="StartButton" to="." method="button_hovered"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="StartButton" to="SFX/ButtonSound" method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="QuitButton" to="." method="button_hovered"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="SFX/ButtonSound" method="_on_quit_button_pressed"]
