@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cec2xsnyt2sh"]
+[gd_scene load_steps=18 format=3 uid="uid://cec2xsnyt2sh"]
 
 [ext_resource type="Script" path="res://Scripts/UI/main_menu.gd" id="1_ykgek"]
 [ext_resource type="Texture2D" uid="uid://bijhpywdq1i0n" path="res://Sprites/Menu_Background.png" id="2_do7hj"]
@@ -11,13 +11,52 @@
 [ext_resource type="FontFile" uid="uid://bpqweb7smn8tk" path="res://Font/OldEnglishGothicPixelRegular-ow2Bo.ttf" id="5_3p6ey"]
 [ext_resource type="AudioStream" uid="uid://cmsirwmvvmetr" path="res://SFX/ButtonNoises/button_hover.wav" id="10_0bwx6"]
 
+[sub_resource type="Animation" id="Animation_pjkmg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main Menu/MainMenuIcon:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main Menu:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Options Menu:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1152, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_wu0va"]
 resource_name = "scaleUp"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainMenuIcon:scale")
+tracks/0/path = NodePath("Main Menu/MainMenuIcon:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -27,26 +66,44 @@ tracks/0/keys = {
 "values": [Vector2(2, 2), Vector2(4, 4)]
 }
 
-[sub_resource type="Animation" id="Animation_pjkmg"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_ihrup"]
+resource_name = "scrollOptions"
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainMenuIcon:scale")
+tracks/0/path = NodePath("Main Menu:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(2, 2)]
+"values": [Vector2(0, 0), Vector2(-100, 0), Vector2(-50, 0), Vector2(-1152, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Options Menu:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1152, 0), Vector2(1052, 0), Vector2(1102, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rjx50"]
 _data = {
 "RESET": SubResource("Animation_pjkmg"),
-"scaleUp": SubResource("Animation_wu0va")
+"scaleUp": SubResource("Animation_wu0va"),
+"scrollOptions": SubResource("Animation_ihrup")
 }
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lwyx8"]
+texture = ExtResource("2_do7hj")
+modulate_color = Color(0.517647, 0.517647, 0.517647, 1)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o6il2"]
 streams_count = 3
@@ -56,6 +113,8 @@ stream_1/stream = ExtResource("3_l2254")
 stream_1/weight = 1.0
 stream_2/stream = ExtResource("4_btp04")
 stream_2/weight = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_accfl"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -71,29 +130,27 @@ libraries = {
 "": SubResource("AnimationLibrary_rjx50")
 }
 
-[node name="Background" type="TextureRect" parent="."]
-modulate = Color(0.458824, 0.458824, 0.458824, 1)
+[node name="Main Menu" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_do7hj")
+theme_override_styles/panel = SubResource("StyleBoxTexture_lwyx8")
 
-[node name="MainMenuIcon" type="Sprite2D" parent="."]
+[node name="MainMenuIcon" type="Sprite2D" parent="Main Menu"]
 position = Vector2(112, 544)
 rotation = 0.777894
 scale = Vector2(2, 2)
 texture = ExtResource("2_txly5")
 script = ExtResource("4_36h2w")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 88.0
-offset_bottom = 130.0
+[node name="Title" type="Label" parent="Main Menu"]
+layout_mode = 2
+offset_top = 64.0
+offset_right = 1152.0
+offset_bottom = 128.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("5_3p6ey")
 theme_override_font_sizes/font_size = 50
@@ -101,58 +158,119 @@ text = "Game name goes here"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StartButton" type="Button" parent="."]
+[node name="Buttons" type="VBoxContainer" parent="Main Menu"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 512.0
-offset_top = 232.0
-offset_right = -520.0
-offset_bottom = -352.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -152.0
+offset_right = 90.0
+offset_bottom = 152.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="StartButton" type="Button" parent="Main Menu/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("5_3p6ey")
 theme_override_font_sizes/font_size = 30
 text = "Start"
 icon = ExtResource("3_dsaq5")
+flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="QuitButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 512.0
-offset_top = 320.0
-offset_right = -520.0
-offset_bottom = -264.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="OptionsButton" type="Button" parent="Main Menu/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("5_3p6ey")
+theme_override_font_sizes/font_size = 30
+text = "Options"
+icon = ExtResource("3_dsaq5")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="QuitButton" type="Button" parent="Main Menu/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("5_3p6ey")
 theme_override_font_sizes/font_size = 30
 text = "Quit"
 icon = ExtResource("3_dsaq5")
+flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="SFX" type="Control" parent="."]
+[node name="SFX" type="Control" parent="Main Menu"]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 536.0
+offset_top = -40.0
+offset_right = 576.0
 
-[node name="ButtonSound" type="AudioStreamPlayer" parent="SFX"]
+[node name="ButtonSound" type="AudioStreamPlayer" parent="Main Menu/SFX"]
 stream = SubResource("AudioStreamRandomizer_o6il2")
 
-[node name="ButtonSound_Hover" type="AudioStreamPlayer" parent="SFX"]
+[node name="ButtonSound_Hover" type="AudioStreamPlayer" parent="Main Menu/SFX"]
 stream = ExtResource("10_0bwx6")
 
-[connection signal="mouse_entered" from="." to="MainMenuIcon" method="_on_main_menu_mouse_entered"]
-[connection signal="mouse_exited" from="." to="MainMenuIcon" method="_on_main_menu_mouse_exited"]
-[connection signal="mouse_entered" from="StartButton" to="." method="button_hovered"]
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="StartButton" to="SFX/ButtonSound" method="_on_start_button_pressed"]
-[connection signal="mouse_entered" from="QuitButton" to="." method="button_hovered"]
-[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="QuitButton" to="SFX/ButtonSound" method="_on_quit_button_pressed"]
+[node name="Options Menu" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1152.0
+offset_right = 1152.01
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_accfl")
+
+[node name="Title" type="Label" parent="Options Menu"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 64.0
+offset_bottom = 128.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_3p6ey")
+theme_override_font_sizes/font_size = 50
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="VBoxContainer" parent="Options Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.003
+offset_top = -196.0
+offset_right = -64.0033
+offset_bottom = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Options Menu/Options"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_3p6ey")
+theme_override_font_sizes/font_size = 25
+text = "Placeholder option"
+
+[node name="Sprite2D" type="Sprite2D" parent="Options Menu/Options"]
+position = Vector2(-256, -128)
+
+[connection signal="mouse_entered" from="." to="Main Menu/MainMenuIcon" method="_on_main_menu_mouse_entered"]
+[connection signal="mouse_exited" from="." to="Main Menu/MainMenuIcon" method="_on_main_menu_mouse_exited"]
+[connection signal="mouse_entered" from="Main Menu/Buttons/StartButton" to="." method="playHoverSound"]
+[connection signal="pressed" from="Main Menu/Buttons/StartButton" to="." method="startGame"]
+[connection signal="mouse_entered" from="Main Menu/Buttons/OptionsButton" to="." method="playHoverSound"]
+[connection signal="pressed" from="Main Menu/Buttons/OptionsButton" to="." method="scrollOptions"]
+[connection signal="mouse_entered" from="Main Menu/Buttons/QuitButton" to="." method="playHoverSound"]
+[connection signal="pressed" from="Main Menu/Buttons/QuitButton" to="." method="quitGame"]
