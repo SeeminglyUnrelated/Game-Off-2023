@@ -29,7 +29,12 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	
+	# Animations for jumping and falling..	
+	if velocity.y < 0:
 		$Sprite2D.animation = "Jumping"
+	if velocity.y > 0 and not is_wall_sliding:
+		$Sprite2D.animation = "Falling"
 
 	# Allows player to jump
 	if Input.is_action_pressed("Jump") and is_on_floor():
@@ -75,8 +80,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Jump") and is_wall_sliding:
 		wall_pushing = true
 		velocity.y = JUMP_VELOCITY
-		velocity.x = move_toward(velocity.x, -direction * SPEED*3, SPEED)
-		#await get_tree().create_timer(0.5).timeout
+		velocity.x = -direction * SPEED * 5
+		await get_tree().create_timer(0.1).timeout # This stinks! But it will work for now
 		wall_pushing = false
 	
 	print(velocity.x)

@@ -324,4 +324,5 @@ limit_left = 2
 limit_top = -290
 limit_right = 1540
 limit_bottom = 670
+position_smoothing_speed = 5.025
 editor_draw_limits = true
