@@ -22,7 +22,7 @@ func _on_quit_button_pressed() -> void:
 
 func _on_start_button_pressed() -> void:
 	playButtonSound()
-	SceneTransition.change_scene("res://Scenes/game.tscn", "wipe")
+	SceneTransition.change_scene("res://Scenes/level1.tscn", "wipe")
 
 func button_hovered():
 	playButtonSound("hover")

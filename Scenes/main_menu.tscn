@@ -11,6 +11,21 @@
 [ext_resource type="FontFile" uid="uid://bpqweb7smn8tk" path="res://Font/OldEnglishGothicPixelRegular-ow2Bo.ttf" id="5_3p6ey"]
 [ext_resource type="AudioStream" uid="uid://cmsirwmvvmetr" path="res://SFX/ButtonNoises/button_hover.wav" id="10_0bwx6"]
 
+[sub_resource type="Animation" id="Animation_pjkmg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenuIcon:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+
 [sub_resource type="Animation" id="Animation_wu0va"]
 resource_name = "scaleUp"
 length = 0.5
@@ -25,21 +40,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(2, 2), Vector2(4, 4)]
-}
-
-[sub_resource type="Animation" id="Animation_pjkmg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MainMenuIcon:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2, 2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rjx50"]
