@@ -230,6 +230,11 @@ animations = [{
 "loop": true,
 "name": &"Running",
 "speed": 20.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xnbmp"]
@@ -239,7 +244,7 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_aaxwa")
-animation = &"Idle"
+animation = &"new_animation"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

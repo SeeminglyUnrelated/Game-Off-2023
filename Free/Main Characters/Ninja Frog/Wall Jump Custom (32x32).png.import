@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckt2k41tlqt17"
-path="res://.godot/imported/Terrain (16x16).png-5406b2a296e90488b2749e46e9c404f6.ctex"
+uid="uid://c6xxr5ow2d4o2"
+path="res://.godot/imported/Wall Jump Custom (32x32).png-5a0aeed7f2543fa27c5deb6d9a4c8965.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Terrain (16x16).png"
-dest_files=["res://.godot/imported/Terrain (16x16).png-5406b2a296e90488b2749e46e9c404f6.ctex"]
+source_file="res://Free/Main Characters/Ninja Frog/Wall Jump Custom (32x32).png"
+dest_files=["res://.godot/imported/Wall Jump Custom (32x32).png-5a0aeed7f2543fa27c5deb6d9a4c8965.ctex"]
 
 [params]
 

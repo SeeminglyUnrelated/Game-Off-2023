@@ -1,40 +1,38 @@
-[gd_scene load_steps=46 format=3 uid="uid://clavodley7lll"]
+[gd_scene load_steps=56 format=3 uid="uid://clavodley7lll"]
 
 [ext_resource type="Texture2D" uid="uid://byyvms5a74gpc" path="res://Free/Main Characters/Ninja Frog/Jump (32x32).png" id="1_6nddg"]
 [ext_resource type="Script" path="res://Scripts/main_character.gd" id="1_ft7pr"]
 [ext_resource type="Texture2D" uid="uid://bdlhq8fmxmsos" path="res://Free/Main Characters/Ninja Frog/Idle (32x32).png" id="2_bevrm"]
 [ext_resource type="Texture2D" uid="uid://donkgidj02esw" path="res://Free/Main Characters/Ninja Frog/Fall (32x32).png" id="2_jpvch"]
-[ext_resource type="Texture2D" uid="uid://cpgee3x40rcu0" path="res://Free/Main Characters/Ninja Frog/Hit (32x32).png" id="2_spapa"]
 [ext_resource type="Texture2D" uid="uid://n4py3ea2uqdc" path="res://Free/Main Characters/Ninja Frog/Run (32x32).png" id="4_btore"]
 [ext_resource type="Texture2D" uid="uid://c2fma61nui2ax" path="res://Free/Main Characters/Ninja Frog/Wall Jump (32x32).png" id="7_wg7ub"]
+[ext_resource type="Texture2D" uid="uid://c6xxr5ow2d4o2" path="res://Free/Main Characters/Ninja Frog/Wall Jump Custom (32x32).png" id="8_ckor7"]
+[ext_resource type="Texture2D" uid="uid://58y42h3uhrij" path="res://Free/Other/Dust Particle.png" id="8_fj56v"]
+[ext_resource type="Texture2D" uid="uid://dvblxsyq4b8rq" path="res://Free/Main Characters/Ninja Frog/Double Jump (32x32).png" id="8_jgale"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5g8be"]
-atlas = ExtResource("2_spapa")
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mdp2"]
+atlas = ExtResource("8_jgale")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a1hps"]
-atlas = ExtResource("2_spapa")
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3436"]
+atlas = ExtResource("8_jgale")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_faqnt"]
-atlas = ExtResource("2_spapa")
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyic1"]
+atlas = ExtResource("8_jgale")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6abh5"]
-atlas = ExtResource("2_spapa")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejb6f"]
+atlas = ExtResource("8_jgale")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rewpb"]
-atlas = ExtResource("2_spapa")
+[sub_resource type="AtlasTexture" id="AtlasTexture_8l3vk"]
+atlas = ExtResource("8_jgale")
 region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wumwb"]
-atlas = ExtResource("2_spapa")
+[sub_resource type="AtlasTexture" id="AtlasTexture_4f3bq"]
+atlas = ExtResource("8_jgale")
 region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_clrjl"]
-atlas = ExtResource("2_spapa")
-region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rnwdm"]
 atlas = ExtResource("2_bevrm")
@@ -152,6 +150,34 @@ region = Rect2(96, 0, 32, 32)
 atlas = ExtResource("7_wg7ub")
 region = Rect2(128, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ist2m"]
+atlas = ExtResource("8_ckor7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x67ri"]
+atlas = ExtResource("8_ckor7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fped"]
+atlas = ExtResource("8_ckor7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myj23"]
+atlas = ExtResource("8_ckor7")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8oa07"]
+atlas = ExtResource("8_ckor7")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btjqj"]
+atlas = ExtResource("8_ckor7")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3mbb"]
+atlas = ExtResource("8_ckor7")
+region = Rect2(192, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_u78xe"]
 animations = [{
 "frames": [{
@@ -164,29 +190,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5g8be")
+"texture": SubResource("AtlasTexture_3mdp2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a1hps")
+"texture": SubResource("AtlasTexture_a3436")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_faqnt")
+"texture": SubResource("AtlasTexture_eyic1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6abh5")
+"texture": SubResource("AtlasTexture_ejb6f")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rewpb")
+"texture": SubResource("AtlasTexture_8l3vk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wumwb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_clrjl")
+"texture": SubResource("AtlasTexture_4f3bq")
 }],
 "loop": true,
 "name": &"Hit",
-"speed": 20.0
+"speed": 25.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -294,34 +317,88 @@ animations = [{
 "loop": true,
 "name": &"Sliding",
 "speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ist2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x67ri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fped")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myj23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8oa07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btjqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3mbb")
+}],
+"loop": true,
+"name": &"Wall Jumping",
+"speed": 20.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i4nwm"]
 radius = 6.2
-height = 20.0
+height = 17.6
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_70muk"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_twlcp"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-position = Vector2(236, 459)
 script = ExtResource("1_ft7pr")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(52.5, 52.5)
+position = Vector2(0, -11)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_u78xe")
-animation = &"Falling"
+animation = &"Wall Jumping"
 autoplay = "Idle"
+frame_progress = 0.171695
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(53, 59)
+position = Vector2(0, 1)
 scale = Vector2(5, 5)
 shape = SubResource("CapsuleShape2D_i4nwm")
 one_way_collision = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(52.5, 52.5)
-limit_left = 2
-limit_top = -290
-limit_right = 1540
-limit_bottom = 670
+limit_left = -815
+limit_top = -530
+limit_right = 815
+limit_bottom = 200
+position_smoothing_speed = 5.025
 editor_draw_limits = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_70muk")
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_twlcp")
+texture = ExtResource("8_fj56v")
+
+[node name="RayRight" type="RayCast2D" parent="."]
+target_position = Vector2(38, 0)
+collide_with_areas = true
+
+[node name="RayLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-38, 0)
+collide_with_areas = true
+
+[node name="RayDown" type="RayCast2D" parent="."]
+target_position = Vector2(0, 52)
+collide_with_areas = true
