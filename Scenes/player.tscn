@@ -342,12 +342,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Wall Jumping",
-"speed": 20.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"new_animation",
-"speed": 5.0
+"speed": 25.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i4nwm"]
@@ -371,7 +366,7 @@ texture_filter = 1
 position = Vector2(52.5, 52.5)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_u78xe")
-animation = &"new_animation"
+animation = &"Idle"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -397,3 +392,13 @@ emitting = false
 amount = 4
 process_material = SubResource("ParticleProcessMaterial_twlcp")
 texture = ExtResource("8_fj56v")
+
+[node name="RayRight" type="RayCast2D" parent="."]
+position = Vector2(53, 52)
+target_position = Vector2(38, 0)
+collide_with_areas = true
+
+[node name="RayLeft" type="RayCast2D" parent="."]
+position = Vector2(53, 52)
+target_position = Vector2(-38, 0)
+collide_with_areas = true

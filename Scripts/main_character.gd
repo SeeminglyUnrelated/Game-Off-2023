@@ -43,11 +43,11 @@ func _physics_process(delta):
 	var is_wall_sliding = false
 
 	if is_on_wall_only() and velocity.y > 0:
-		if Input.is_action_pressed("Left"):
+		if Input.is_action_pressed("Left") and $RayLeft.is_colliding():
 			is_wall_sliding = true
 			$Sprite2D.flip_h = true
 			
-		elif Input.is_action_pressed("Right"):
+		elif Input.is_action_pressed("Right") and $RayRight.is_colliding():
 			is_wall_sliding = true
 			$Sprite2D.flip_h = false
 	
@@ -62,7 +62,7 @@ func _physics_process(delta):
 		was_wall_jumping = true
 		$Sprite2D.animation = "Wall Jumping"
 		velocity.y = WALL_VELOCITY
-		WALL_VELOCITY += 75 # Nerf each jump by x amount..
+		WALL_VELOCITY += 50 # Nerf each jump by x amount..
 		velocity.x = -direction * SPEED * 4.5
 		await get_tree().create_timer(0.05).timeout # This stinks! But it will work for now
 		wall_pushing = false
@@ -88,5 +88,10 @@ func _physics_process(delta):
 		$Sprite2D.flip_h = false
 	if velocity.x < 0:
 		$Sprite2D.flip_h = true
+		
+	if $RayRight.is_colliding():
+		print("right collision")
+	if $RayLeft.is_colliding():
+		print("left collision")
 		
 	move_and_slide()
