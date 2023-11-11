@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://crliyynx0drsw"]
+[gd_scene load_steps=14 format=3 uid="uid://crliyynx0drsw"]
 
 [ext_resource type="Texture2D" uid="uid://dtrh53s6mwbp8" path="res://Assets/bg/sky.png" id="1_npya7"]
 [ext_resource type="Texture2D" uid="uid://bxr517u0s3dr2" path="res://Free/Terrain/Terrain (16x16).png" id="2_4j0nc"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://clavodley7lll" path="res://Scenes/player.tscn" id="3_ib504"]
 [ext_resource type="PackedScene" uid="uid://didi2doeq5olm" path="res://Scenes/collectable.tscn" id="5_1blvj"]
 [ext_resource type="PackedScene" uid="uid://w4rvi0ucogye" path="res://Scenes/box.tscn" id="6_4ovc0"]
+[ext_resource type="PackedScene" uid="uid://bgvjmjlinvj38" path="res://Scenes/enemy.tscn" id="7_ky7u3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3lg8b"]
 texture = ExtResource("2_4j0nc")
@@ -491,7 +492,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_npya7")
 
-[node name="Terrain" type="TileMap" parent="."]
+[node name="Terrain" type="TileMap" parent="." groups=["Terrain"]]
 texture_filter = 1
 scale = Vector2(3, 3)
 tile_set = SubResource("TileSet_u4742")
@@ -537,16 +538,20 @@ position = Vector2(1182, 54.5)
 shape = SubResource("RectangleShape2D_oywtv")
 one_way_collision = true
 
-[node name="Box" parent="." instance=ExtResource("6_4ovc0")]
-position = Vector2(430, 114)
+[node name="Box" parent="." groups=["Terrain"] instance=ExtResource("6_4ovc0")]
+position = Vector2(430, 117)
 freeze = true
 
-[node name="Box2" parent="." instance=ExtResource("6_4ovc0")]
+[node name="Box2" parent="." groups=["Terrain"] instance=ExtResource("6_4ovc0")]
 position = Vector2(-430, 114)
 freeze = true
 
 [node name="Player" parent="." instance=ExtResource("3_ib504")]
 position = Vector2(0, 99)
+
+[node name="Enemy" parent="." instance=ExtResource("7_ky7u3")]
+position = Vector2(-240, 96)
+scale = Vector2(3, 3)
 
 [connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
 [connection signal="body_exited" from="Door" to="Door" method="_on_body_exited"]

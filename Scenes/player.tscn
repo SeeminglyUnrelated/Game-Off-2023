@@ -315,7 +315,7 @@ gravity = Vector3(0, 98, 0)
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_ft7pr")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
@@ -323,9 +323,9 @@ texture_filter = 1
 position = Vector2(0, -11)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_u78xe")
-animation = &"Idle"
+animation = &"Jumping"
 autoplay = "Idle"
-frame_progress = 0.676682
+frame_progress = 0.0877401
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
