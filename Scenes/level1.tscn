@@ -465,7 +465,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_3lg8b")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_amgaa"]
-radius = 58.0
+radius = 22.0
 height = 152.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l3ca"]
@@ -504,7 +504,7 @@ position = Vector2(-750, -239)
 script = ExtResource("3_etstw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
-position = Vector2(78, -35)
+position = Vector2(80, -35)
 shape = SubResource("CapsuleShape2D_amgaa")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Door"]

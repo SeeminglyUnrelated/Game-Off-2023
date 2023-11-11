@@ -1,85 +1,75 @@
 extends CharacterBody2D
 
+# Ability values, feel free to mess around with these
 const SPEED = 400.0
 const JUMP_VELOCITY = -900
 const WALL_GRAVITY = 100
 const PUSH_FORCE = 300
-
 var WALL_VELOCITY = -900
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+# State variables, don't touch
 var wall_pushing = false
 var was_wall_jumping = false
 
 # Player Functions
 func _physics_process(delta):
 
-	# Assign values to left and right
-	var direction = Input.get_axis("Left", "Right")
+	var direction = Input.get_axis("Left", "Right") # Assign values to left and right (-1 = left, 0 = still, 1 = right)
+	var is_wall_sliding = false # Refresh wall sliding
+	var touching_wall = false # Refresh wall touching
 	
-	# Makes gravity take effect
-	if not is_on_floor():
+	if $RayLeft.is_colliding() or $RayRight.is_colliding(): # Is player touching wall ? Uses short length rays
+		touching_wall = true
+
+	if not is_on_floor(): # Applies gravity
 		velocity.y += gravity * delta
+	else: # Resets values upon landing
+		WALL_VELOCITY = -900
+		was_wall_jumping = false
 
-	# Allows player to jump
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration
 	if direction and not wall_pushing:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = direction * SPEED # Get input direction and increase velocity accordingly, used for x-axis movement
+		
+	else: 
+		velocity.x = move_toward(velocity.x, 0, SPEED) # Slow down after movement key released
 	
-	# Allows player to drop through one way platforms
-	if Input.is_action_pressed("Down") and $RayDown.get_collider() != null and $RayDown.get_collider().is_in_group("OneWayCollisions"):
-		position.y += 1
-	
-	# Allows the player to wall slide
-	var is_wall_sliding = false
-
-	if velocity.y > 0:
-		if Input.is_action_pressed("Left") and $RayLeft.is_colliding():
-			is_wall_sliding = true
-	
-		elif Input.is_action_pressed("Right") and $RayRight.is_colliding():
-			is_wall_sliding = true
-	
-	if is_wall_sliding:
+	if direction and velocity.y > 0 and touching_wall: # Allows player to wall slide
 		velocity.y += WALL_GRAVITY
-		velocity.y = min(velocity.y, WALL_GRAVITY)
+		velocity.y = min(velocity.y, WALL_GRAVITY) # Slows descent while wall sliding
 		$Sprite2D.animation = "Sliding"
-	
+		is_wall_sliding = true # Used to interupt animations
+		
 	# Allows the player to wall jump
-	if Input.is_action_just_pressed("Jump") and $RayLeft.is_colliding() and not is_on_floor()  or Input.is_action_just_pressed("Jump") and $RayRight.is_colliding() and not is_on_floor():
+	if Input.is_action_just_pressed("Jump"):
+		if touching_wall and not is_on_floor(): # Allows player to wall jump
 			wall_pushing = true
 			was_wall_jumping = true
 			$Sprite2D.animation = "Wall Jumping"
 			velocity.y = WALL_VELOCITY
-			if $RayLeft.is_colliding():	
+			if $RayLeft.is_colliding(): # If wall is on left side, push right
 				velocity.x = SPEED * 4.5
-			if $RayRight.is_colliding():
+			if $RayRight.is_colliding(): # If wall is on right side, push left
 				velocity.x = -SPEED * 4.5
 			WALL_VELOCITY += 50 # Nerf each jump by x amount..
-			await get_tree().create_timer(0.05).timeout # This stinks! But it will work for now
+			await get_tree().create_timer(0.05).timeout # Disable x-axis movement for a short burst in order to create wall pushback
 			wall_pushing = false
+		if is_on_floor(): # Allows player to jump
+			velocity.y = JUMP_VELOCITY
 	
-	# Reset values upon landing
-	if is_on_floor():
-		WALL_VELOCITY = -900
-		was_wall_jumping = false
+	if Input.is_action_pressed("Down"): # Allows player to drop through one way platforms
+		if $RayDown.get_collider() != null and $RayDown.get_collider().is_in_group("OneWayCollisions") and direction == 0: # Player needs to be still in order to avoid animation slide bug
+			position.y += 1
 	
-	# Allows for pushing of physics objects
-	for i in get_slide_collision_count():
+	for i in get_slide_collision_count(): # Allows for pushing of physics objects
 		var collisions = get_slide_collision(i)
 		if Input.is_action_pressed("Interact") and $RayRight.get_collider() != null and $RayRight.get_collider().is_in_group("PhysicsObjects") and collisions.get_collider().is_in_group("PhysicsObjects"):
 			collisions.get_collider().apply_central_impulse(-collisions.get_normal() * PUSH_FORCE)
 		if Input.is_action_pressed("Interact") and $RayLeft.get_collider() != null and $RayLeft.get_collider().is_in_group("PhysicsObjects") and collisions.get_collider().is_in_group("PhysicsObjects"):
 			collisions.get_collider().apply_central_impulse(-collisions.get_normal() * PUSH_FORCE)
 	
-	# Quits game
-	if Input.is_action_just_pressed("Quit"):
+	if Input.is_action_just_pressed("Quit"): # Quits game
 		get_tree().quit()
 	
 	# - ANIMATIONS - #
@@ -98,5 +88,5 @@ func _physics_process(delta):
 		$Sprite2D.flip_h = false
 	if velocity.x < 0:
 		$Sprite2D.flip_h = true
-	
+		
 	move_and_slide()

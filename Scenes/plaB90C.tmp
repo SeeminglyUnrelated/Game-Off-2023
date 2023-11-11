@@ -365,8 +365,9 @@ texture_filter = 1
 position = Vector2(0, -11)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_u78xe")
-animation = &"Idle"
+animation = &"Wall Jumping"
 autoplay = "Idle"
+frame_progress = 0.171695
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -392,9 +393,12 @@ texture = ExtResource("8_fj56v")
 
 [node name="RayRight" type="RayCast2D" parent="."]
 target_position = Vector2(38, 0)
+collide_with_areas = true
 
 [node name="RayLeft" type="RayCast2D" parent="."]
 target_position = Vector2(-38, 0)
+collide_with_areas = true
 
 [node name="RayDown" type="RayCast2D" parent="."]
 target_position = Vector2(0, 52)
+collide_with_areas = true
