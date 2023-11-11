@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://bgvjmjlinvj38"]
+[gd_scene load_steps=30 format=3 uid="uid://bgvjmjlinvj38"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_w1rs7"]
 [ext_resource type="Texture2D" uid="uid://2mc436w72lrv" path="res://Free/Main Characters/Mask Dude/Idle (32x32).png" id="1_ynri4"]
 [ext_resource type="Texture2D" uid="uid://ciodehvd626lw" path="res://Free/Main Characters/Mask Dude/Run (32x32).png" id="2_v68pq"]
+[ext_resource type="Texture2D" uid="uid://chqfm1xn727it" path="res://Assets/enemy_alerted.png" id="4_dnn84"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s6pqw"]
 atlas = ExtResource("1_ynri4")
@@ -183,11 +184,18 @@ height = 26.0
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_w1rs7")
+Sprite_Alerted = ExtResource("4_dnn84")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_6cjqu")
-frame_progress = 0.0912106
+frame_progress = 0.179628
+
+[node name="StateShower" type="Sprite2D" parent="."]
+z_index = 975
+texture_filter = 1
+position = Vector2(1, -21)
+scale = Vector2(0.5, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)

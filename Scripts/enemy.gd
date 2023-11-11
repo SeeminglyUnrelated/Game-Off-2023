@@ -9,6 +9,9 @@ const JUMP_VELOCITY = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var direction = 1
 
+@export var Sprite_Alerted : CompressedTexture2D
+@export var Sprite_Dazed : CompressedTexture2D
+
 enum MODES
 {
 	neutral,
@@ -34,6 +37,7 @@ func _physics_process(delta):
 		
 	if mode == MODES.alert:
 		velocity.x = direction * (SPEED * 1.5) # Go a little faster when found player
+		$StateShower.texture = Sprite_Alerted
 	else:
 		# We hit a wall
 		if ($Front.is_colliding() and $Front.get_collider().is_in_group("Terrain")):
