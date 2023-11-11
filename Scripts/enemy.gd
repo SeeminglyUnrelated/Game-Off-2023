@@ -1,3 +1,5 @@
+# Paul is the one to blame for any mess
+
 extends CharacterBody2D
 
 const SPEED = 200.0
@@ -10,7 +12,8 @@ var direction = 1
 enum MODES
 {
 	neutral,
-	alert
+	alert,
+	dazed
 }
 
 var mode = MODES.neutral
@@ -27,13 +30,22 @@ func _physics_process(delta):
 	# Set mode to alert
 	if ($Front.is_colliding() and $Front.get_collider().is_in_group("Player")):
 		mode = MODES.alert
+	else: mode = MODES.neutral
 		
 	if mode == MODES.alert:
-		velocity.x = direction * SPEED
+		velocity.x = direction * (SPEED * 1.5) # Go a little faster when found player
 	else:
 		# We hit a wall
-		if $Front.is_colliding() and $Front.get_collider().is_in_group("Terrain"):
-			direction = -direction
+		if ($Front.is_colliding() and $Front.get_collider().is_in_group("Terrain")):
+			var origin = $Front.global_transform.origin
+			var collision_point = $Front.get_collision_point()
+			var distance = origin.distance_to(collision_point)
+			
+			# We don't want to turn immediately when we see a wall so...
+			if distance <= 100:
+				direction = -direction
+				scale.x *= -1
+		velocity.x = direction * SPEED
 			
 	print(direction)
 

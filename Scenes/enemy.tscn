@@ -187,11 +187,15 @@ script = ExtResource("1_w1rs7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_6cjqu")
-frame_progress = 0.776504
+frame_progress = 0.0912106
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_ixmut")
 
 [node name="Front" type="RayCast2D" parent="."]
-target_position = Vector2(60, 0)
+target_position = Vector2(128, 0)
+
+[node name="Back" type="RayCast2D" parent="."]
+rotation = -1.92468
+target_position = Vector2(11.0894, -30.0171)

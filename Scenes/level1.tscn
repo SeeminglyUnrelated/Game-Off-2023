@@ -548,6 +548,7 @@ freeze = true
 
 [node name="Player" parent="." instance=ExtResource("3_ib504")]
 position = Vector2(0, 99)
+scale = Vector2(0.8, 0.8)
 
 [node name="Enemy" parent="." instance=ExtResource("7_ky7u3")]
 position = Vector2(-240, 96)
