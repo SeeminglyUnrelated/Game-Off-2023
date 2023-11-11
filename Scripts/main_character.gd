@@ -3,7 +3,7 @@ extends CharacterBody2D
 const SPEED = 400.0
 const JUMP_VELOCITY = -900
 const WALL_GRAVITY = 100
-const PUSH_FORCE = 499
+const PUSH_FORCE = 300
 
 var WALL_VELOCITY = -900
 
@@ -36,10 +36,10 @@ func _physics_process(delta):
 	if Input.is_action_pressed("Down") and $RayDown.get_collider() != null and $RayDown.get_collider().is_in_group("OneWayCollisions"):
 		position.y += 1
 	
-	# Allows the player to wall slide (some parts taken from https://www.youtube.com/watch?v=5FWzWrK6jLM)
+	# Allows the player to wall slide
 	var is_wall_sliding = false
 
-	if is_on_wall_only() and velocity.y > 0:
+	if velocity.y > 0:
 		if Input.is_action_pressed("Left") and $RayLeft.is_colliding():
 			is_wall_sliding = true
 	
@@ -52,16 +52,18 @@ func _physics_process(delta):
 		$Sprite2D.animation = "Sliding"
 	
 	# Allows the player to wall jump
-	if Input.is_action_just_pressed("Jump") and is_on_wall_only() and direction != 0:
-		wall_pushing = true
-		was_wall_jumping = true
-		$Sprite2D.animation = "Wall Jumping"
-		velocity.y = WALL_VELOCITY
-		WALL_VELOCITY += 50 # Nerf each jump by x amount..
-		velocity.x = -direction * SPEED * 4.5
-		await get_tree().create_timer(0.05).timeout # This stinks! But it will work for now
-		wall_pushing = false
-		print(WALL_VELOCITY)
+	if Input.is_action_just_pressed("Jump") and $RayLeft.is_colliding() and not is_on_floor()  or Input.is_action_just_pressed("Jump") and $RayRight.is_colliding() and not is_on_floor():
+			wall_pushing = true
+			was_wall_jumping = true
+			$Sprite2D.animation = "Wall Jumping"
+			velocity.y = WALL_VELOCITY
+			if $RayLeft.is_colliding():	
+				velocity.x = SPEED * 4.5
+			if $RayRight.is_colliding():
+				velocity.x = -SPEED * 4.5
+			WALL_VELOCITY += 50 # Nerf each jump by x amount..
+			await get_tree().create_timer(0.05).timeout # This stinks! But it will work for now
+			wall_pushing = false
 	
 	# Reset values upon landing
 	if is_on_floor():
@@ -96,6 +98,5 @@ func _physics_process(delta):
 		$Sprite2D.flip_h = false
 	if velocity.x < 0:
 		$Sprite2D.flip_h = true
-		
 	
 	move_and_slide()
