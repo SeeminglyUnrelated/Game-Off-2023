@@ -379,7 +379,6 @@ limit_left = -815
 limit_top = -530
 limit_right = 815
 limit_bottom = 200
-position_smoothing_speed = 5.025
 editor_draw_limits = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
