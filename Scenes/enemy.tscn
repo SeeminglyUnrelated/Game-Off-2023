@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://bgvjmjlinvj38"]
+[gd_scene load_steps=31 format=3 uid="uid://bgvjmjlinvj38"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_w1rs7"]
 [ext_resource type="Texture2D" uid="uid://2mc436w72lrv" path="res://Free/Main Characters/Mask Dude/Idle (32x32).png" id="1_ynri4"]
 [ext_resource type="Texture2D" uid="uid://ciodehvd626lw" path="res://Free/Main Characters/Mask Dude/Run (32x32).png" id="2_v68pq"]
+[ext_resource type="Texture2D" uid="uid://dejshoc1ryjjr" path="res://Assets/enemy_confused.png" id="3_8na2y"]
 [ext_resource type="Texture2D" uid="uid://chqfm1xn727it" path="res://Assets/enemy_alerted.png" id="4_dnn84"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s6pqw"]
@@ -134,7 +135,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_60mlc")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 20.0
 }, {
 "frames": [{
@@ -185,11 +186,14 @@ height = 26.0
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_w1rs7")
 Sprite_Alerted = ExtResource("4_dnn84")
+Sprite_Dazed = ExtResource("3_8na2y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_6cjqu")
-frame_progress = 0.179628
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.236056
 
 [node name="StateShower" type="Sprite2D" parent="."]
 z_index = 975
