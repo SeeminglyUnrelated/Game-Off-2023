@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl5txgl7lnnbn"]
+[gd_scene load_steps=6 format=3 uid="uid://cxqyxtdqqvbhq"]
 
 [ext_resource type="Texture2D" uid="uid://ckt2k41tlqt17" path="res://Sprites/Terrain (16x16).png" id="1_7stsq"]
-[ext_resource type="PackedScene" uid="uid://y07tm4vdnb58" path="res://Scenes/player.tscn" id="1_liipt"]
+[ext_resource type="PackedScene" uid="uid://b1d3e56f61w4j" path="res://Scenes/Game_UI.tscn" id="1_dyddh"]
+[ext_resource type="PackedScene" uid="uid://clavodley7lll" path="res://Scenes/player.tscn" id="1_liipt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6jgjn"]
 texture = ExtResource("1_7stsq")
@@ -588,6 +589,8 @@ sources/0 = SubResource("TileSetAtlasSource_6jgjn")
 
 [node name="Game" type="Node2D"]
 position = Vector2(-20, -1)
+
+[node name="UI" parent="." instance=ExtResource("1_dyddh")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_n86fa")
