@@ -13,5 +13,6 @@ extends Sprite2D
 func _on_main_menu_mouse_entered() -> void:
 	animation_player.play_backwards("scaleUp")
 
+
 func _on_main_menu_mouse_exited() -> void:
 	animation_player.play("scaleUp")

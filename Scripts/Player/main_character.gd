@@ -3,12 +3,17 @@ extends CharacterBody2D
 const SPEED = 400.0
 const JUMP_VELOCITY = -800.0
 const WALL_GRAVITY = 100
+const WALL_JUMP = -800
+const ACCELERATION_INCREMENTATION = 0.05
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var wall_pushing = false
 
+var acceleration = 0.20
+
+var lastdir = 1
 #Player Functions
 func _physics_process(delta):
 	
@@ -49,8 +54,13 @@ func _physics_process(delta):
 	
 
 	var direction = Input.get_axis("Left", "Right")
+	
 	if direction and not wall_pushing:
-		velocity.x = direction * SPEED
+		if acceleration < 1:
+			acceleration += ACCELERATION_INCREMENTATION
+		if direction != lastdir:
+			acceleration = 0.20
+		velocity.x = direction * SPEED * acceleration
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
@@ -81,4 +91,5 @@ func _physics_process(delta):
 	
 	print(velocity.x)
 	
+	lastdir = direction
 	move_and_slide()

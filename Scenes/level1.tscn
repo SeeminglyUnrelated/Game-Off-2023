@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bxr517u0s3dr2" path="res://Free/Terrain/Terrain (16x16).png" id="2_4j0nc"]
 [ext_resource type="Script" path="res://Scripts/doors.gd" id="3_etstw"]
 [ext_resource type="PackedScene" uid="uid://clavodley7lll" path="res://Scenes/player.tscn" id="3_ib504"]
-[ext_resource type="PackedScene" path="res://Scenes/collectable.tscn" id="5_1blvj"]
-[ext_resource type="PackedScene" path="res://Scenes/box.tscn" id="6_4ovc0"]
+[ext_resource type="PackedScene" uid="uid://didi2doeq5olm" path="res://Scenes/collectable.tscn" id="5_1blvj"]
+[ext_resource type="PackedScene" uid="uid://w4rvi0ucogye" path="res://Scenes/box.tscn" id="6_4ovc0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8alo2"]
 texture = ExtResource("2_4j0nc")

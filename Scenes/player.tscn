@@ -1,7 +1,7 @@
 [gd_scene load_steps=46 format=3 uid="uid://clavodley7lll"]
 
 [ext_resource type="Texture2D" uid="uid://byyvms5a74gpc" path="res://Free/Main Characters/Ninja Frog/Jump (32x32).png" id="1_6nddg"]
-[ext_resource type="Script" path="res://Scripts/main_character.gd" id="1_ft7pr"]
+[ext_resource type="Script" path="res://Scripts/Player/main_character.gd" id="1_58vih"]
 [ext_resource type="Texture2D" uid="uid://bdlhq8fmxmsos" path="res://Free/Main Characters/Ninja Frog/Idle (32x32).png" id="2_bevrm"]
 [ext_resource type="Texture2D" uid="uid://donkgidj02esw" path="res://Free/Main Characters/Ninja Frog/Fall (32x32).png" id="2_jpvch"]
 [ext_resource type="Texture2D" uid="uid://cpgee3x40rcu0" path="res://Free/Main Characters/Ninja Frog/Hit (32x32).png" id="2_spapa"]
@@ -302,14 +302,14 @@ height = 20.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(236, 459)
-script = ExtResource("1_ft7pr")
+script = ExtResource("1_58vih")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(52.5, 52.5)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_u78xe")
-animation = &"Falling"
+animation = &"Hit"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
