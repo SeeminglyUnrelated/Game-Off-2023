@@ -75,3 +75,8 @@ func _physics_process(delta):
 		velocity.x = direction * SPEED
 
 	move_and_slide()
+
+
+func _on_player_hit_body_entered(body):
+	if body.is_in_group("Player"):
+		get_tree().change_scene_to_file("res://Scenes/level1.tscn")

@@ -1,10 +1,13 @@
-[gd_scene load_steps=31 format=3 uid="uid://bgvjmjlinvj38"]
+[gd_scene load_steps=32 format=3 uid="uid://bgvjmjlinvj38"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_w1rs7"]
 [ext_resource type="Texture2D" uid="uid://2mc436w72lrv" path="res://Free/Main Characters/Mask Dude/Idle (32x32).png" id="1_ynri4"]
 [ext_resource type="Texture2D" uid="uid://ciodehvd626lw" path="res://Free/Main Characters/Mask Dude/Run (32x32).png" id="2_v68pq"]
 [ext_resource type="Texture2D" uid="uid://dejshoc1ryjjr" path="res://Assets/enemy_confused.png" id="3_8na2y"]
 [ext_resource type="Texture2D" uid="uid://chqfm1xn727it" path="res://Assets/enemy_alerted.png" id="4_dnn84"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3scq"]
+size = Vector2(24, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s6pqw"]
 atlas = ExtResource("1_ynri4")
@@ -188,6 +191,12 @@ script = ExtResource("1_w1rs7")
 Sprite_Alerted = ExtResource("4_dnn84")
 Sprite_Dazed = ExtResource("3_8na2y")
 
+[node name="PlayerHit" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="PlayerHit"]
+position = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_d3scq")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_6cjqu")
@@ -211,3 +220,5 @@ target_position = Vector2(128, 0)
 [node name="Back" type="RayCast2D" parent="."]
 rotation = -1.92468
 target_position = Vector2(11.0894, -30.0171)
+
+[connection signal="body_entered" from="PlayerHit" to="." method="_on_player_hit_body_entered"]
