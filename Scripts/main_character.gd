@@ -34,10 +34,10 @@ func _physics_process(delta):
 		WALL_VELOCITY = -900
 		was_wall_jumping = false
 
-	if direction and not wall_pushing:
-		velocity.x = direction * SPEED # Get input direction and increase velocity accordingly, used for x-axis movement
+	if direction:
+		velocity.x = move_toward(velocity.x, direction * SPEED, 50) # Get input direction and increase velocity accordingly, used for x-axis movement
 	else: 
-		velocity.x = move_toward(velocity.x, 0, SPEED) # Slow down after movement key released
+		velocity.x = move_toward(velocity.x, 0, 50) # Slow down after movement key released
 	
 	if direction and velocity.y > 0 and touching_wall: # Allows player to wall slide
 		velocity.y = min(velocity.y, WALL_GRAVITY) # Slows descent while wall sliding
@@ -47,17 +47,11 @@ func _physics_process(delta):
 	# Allows the player to wall jump
 	if Input.is_action_just_pressed("Jump"):
 		if touching_wall and not is_on_floor(): # Allows player to wall jump
-			wall_pushing = true
 			was_wall_jumping = true
 			$Sprite2D.animation = "Wall Jumping"
 			velocity.y = WALL_VELOCITY
-			if $RayLeft.is_colliding(): # If wall is on left side, push right
-				velocity.x = SPEED * 4.5
-			if $RayRight.is_colliding(): # If wall is on right side, push left
-				velocity.x = -SPEED * 4.5
+			velocity.x = get_wall_normal()[0] * SPEED * 1.5
 			WALL_VELOCITY += 50 # Nerf each jump by x amount..
-			await get_tree().create_timer(0.05).timeout # Disable x-axis movement for a short burst in order to create wall pushback
-			wall_pushing = false
 		if is_on_floor(): # Allows player to jump
 			velocity.y = JUMP_VELOCITY
 	
@@ -95,5 +89,7 @@ func _physics_process(delta):
 		$Sprite2D.flip_h = false
 	if velocity.x < 0:
 		$Sprite2D.flip_h = true
+		
+	print(velocity.x)
 		
 	move_and_slide()

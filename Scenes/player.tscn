@@ -390,10 +390,10 @@ process_material = SubResource("ParticleProcessMaterial_twlcp")
 texture = ExtResource("8_fj56v")
 
 [node name="RayRight" type="RayCast2D" parent="."]
-target_position = Vector2(38, 0)
+target_position = Vector2(31.1, 0)
 
 [node name="RayLeft" type="RayCast2D" parent="."]
-target_position = Vector2(-38, 0)
+target_position = Vector2(-31.1, 0)
 
 [node name="RayDown" type="RayCast2D" parent="."]
 target_position = Vector2(0, 52)
