@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+const AttackCommandScript = preload("res://Scripts/Player/AttackCommands.gd")
+
 const SPEED = 400.0
 const JUMP_VELOCITY = -800.0
 const WALL_GRAVITY = 100
@@ -14,11 +16,22 @@ var wall_pushing = false
 var acceleration = 0.20
 
 var lastdir = 1
+
+var Attack
+
+var lookingAt = 1
+
+func _ready():
+	Attack = AttackCommandScript.new().BananaAttack.new()
+	add_child(Attack)
+	Attack.Initialize("none")
+	
 #Player Functions
 func _physics_process(delta):
 	
 	var is_wall_sliding = false
-	
+	if (Input.is_action_just_pressed("Attack")):
+		Attack.Execute()
 	#Animation
 	if (velocity.x > 1 || velocity.x < -1):
 		$Sprite2D.animation = "Running"
@@ -49,8 +62,10 @@ func _physics_process(delta):
 	
 	if velocity.x > 0:
 		$Sprite2D.flip_h = false
+		lookingAt = 1
 	if velocity.x < 0:
 		$Sprite2D.flip_h = true
+		lookingAt = -1
 	
 
 	var direction = Input.get_axis("Left", "Right")

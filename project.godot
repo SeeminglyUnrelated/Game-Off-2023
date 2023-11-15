@@ -19,6 +19,7 @@ boot_splash/minimum_display_time=1000
 [autoload]
 
 SceneTransition="*res://Scenes/SceneTransition.tscn"
+Projectiles="*res://Scenes/Projectiles.tscn"
 
 [display]
 

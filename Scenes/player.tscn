@@ -306,20 +306,20 @@ script = ExtResource("1_58vih")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(52.5, 52.5)
+position = Vector2(-1, -6)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_u78xe")
-animation = &"Hit"
+animation = &"Jumping"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(53, 59)
+position = Vector2(-0.5, 0.5)
 scale = Vector2(5, 5)
 shape = SubResource("CapsuleShape2D_i4nwm")
 one_way_collision = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(52.5, 52.5)
+position = Vector2(-1, -6)
 limit_left = 2
 limit_top = -290
 limit_right = 1540

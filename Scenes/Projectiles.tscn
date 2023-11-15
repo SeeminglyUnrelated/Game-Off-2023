@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://dv4epy0vwuq83"]
+
+[ext_resource type="Script" path="res://Scripts/Projectiles/BananaProjectile.gd" id="1_0uv52"]
+[ext_resource type="Texture2D" uid="uid://n4cbfoyhtb1" path="res://Free/Items/Fruits/Bananas.png" id="2_f622g"]
+[ext_resource type="Script" path="res://Scripts/Projectiles/Projectile.gd" id="3_362l7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cd5ll"]
+radius = 6.32456
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3omd"]
+atlas = ExtResource("2_f622g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pwna1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3omd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e7gu0"]
+
+[node name="Projectiles" type="Node2D"]
+
+[node name="BananaProjectile" type="RigidBody2D" parent="."]
+process_mode = 3
+script = ExtResource("1_0uv52")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BananaProjectile"]
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_cd5ll")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BananaProjectile"]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_pwna1")
+frame_progress = 0.0218955
+
+[node name="Projectile" type="RigidBody2D" parent="." groups=["projectiles"]]
+script = ExtResource("3_362l7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile"]
+shape = SubResource("CircleShape2D_e7gu0")

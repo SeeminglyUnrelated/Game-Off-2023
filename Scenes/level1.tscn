@@ -466,7 +466,8 @@ texture = ExtResource("2_4j0nc")
 4:6/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_pso7y"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_8alo2")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_amgaa"]
