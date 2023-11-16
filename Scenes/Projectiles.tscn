@@ -28,6 +28,8 @@ animations = [{
 
 [node name="BananaProjectile" type="RigidBody2D" parent="."]
 process_mode = 3
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_0uv52")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BananaProjectile"]
@@ -41,6 +43,8 @@ sprite_frames = SubResource("SpriteFrames_pwna1")
 frame_progress = 0.0218955
 
 [node name="Projectile" type="RigidBody2D" parent="." groups=["projectiles"]]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("3_362l7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile"]
