@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+# used to generate the attacks we want our player to have
+const AttackCommandScript = preload("res://Scripts/Player/AttackCommands.gd")
+
 # Ability values, feel free to mess around with these
 const SPEED = 400.0
 const JUMP_VELOCITY = -900
@@ -13,6 +16,16 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var wall_pushing = false
 var was_wall_jumping = false
 
+# Variable holding the Attack our player has
+var Attack
+
+# way for other nodes to know which direction player is facing
+var lookingAt = 1
+
+func _ready():
+	Attack = AttackCommandScript.new().BananaAttack.new()
+	add_child(Attack)
+	Attack.Initialize("none")
 # Player Functions
 func _physics_process(delta):
 
@@ -33,7 +46,11 @@ func _physics_process(delta):
 	else: # Resets values upon landing
 		WALL_VELOCITY = -900
 		was_wall_jumping = false
-
+	
+	# TODO: determine when the attack should not execute
+	if (Input.is_action_just_pressed("Attack")):
+		Attack.Execute()
+	
 	if direction:
 		velocity.x = move_toward(velocity.x, direction * SPEED, 50) # Get input direction and increase velocity accordingly, used for x-axis movement
 	else: 
@@ -87,8 +104,10 @@ func _physics_process(delta):
 		
 	if velocity.x > 0:
 		$Sprite2D.flip_h = false
+		lookingAt = 1
 	if velocity.x < 0:
 		$Sprite2D.flip_h = true
+		lookingAt = -1
 		
 	print(velocity.x)
 		
