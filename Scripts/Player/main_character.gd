@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-# used to generate the attacks we want our player to have
+# Used to generate the attacks we want our player to have
 const AttackCommandScript = preload("res://Scripts/Player/AttackCommands.gd")
 
 # Ability values, feel free to mess around with these
@@ -19,11 +19,15 @@ var was_wall_jumping = false
 # Variable holding the Attack our player has
 var Attack
 
-# way for other nodes to know which direction player is facing
+# A way for other nodes to know which direction player is facing
 var lookingAt = 1
 
+
 func _ready():
+	# Initialize the attack
 	Attack = AttackCommandScript.new().BananaAttack.new()
+	
+	# We want to add it as a child first before doing anything with it
 	add_child(Attack)
 	Attack.Initialize("none")
 # Player Functions

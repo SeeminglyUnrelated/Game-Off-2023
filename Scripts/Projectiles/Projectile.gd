@@ -1,11 +1,12 @@
 extends RigidBody2D
 
-# add as a child of the node source to the projectile
+# Base projectile object inherited by other projectile.
+# Should be added as a child node before manipulating
 class_name Projectile
 
 var Direction
 var Speed
-# unimplemented
+# Unimplemented yet
 var Damage
 
 # Called when the node enters the scene tree for the first time.
