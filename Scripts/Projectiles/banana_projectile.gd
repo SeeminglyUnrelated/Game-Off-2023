@@ -1,7 +1,7 @@
-extends Projectile
-class_name BananaProjectile
+extends projectile
+class_name banana_projectile
 
-var Active = false
+var active = false
 
 func _ready():
 	pass 
@@ -16,7 +16,7 @@ func Initialize(_direction : Vector2, _speed : float, _damage: int ):
 	add_child(get_node("/root/Projectiles/BananaProjectile/AnimatedSprite2D").duplicate())
 	
 	# Allow the node to execute its _process method
-	Active = true
+	active = true
 	
 	# So that we do not collide with the player
 	collision_layer = 2
@@ -36,9 +36,9 @@ func Initialize(_direction : Vector2, _speed : float, _damage: int ):
 	super.Initialize(_direction, _speed, _damage)
 	
 	# Make the projectile move over time
-	add_constant_force(Vector2(Direction.x * Speed, Direction.y * Speed))
+	add_constant_force(Vector2(direction.x * speed, direction.y * speed))
 func _physics_process(_delta):
-	if not Active:
+	if not active:
 		return
 	
 	# If the projectile collides with something other than an instance of itself

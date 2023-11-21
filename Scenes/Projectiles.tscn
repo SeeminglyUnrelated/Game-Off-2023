@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dv4epy0vwuq83"]
+[gd_scene load_steps=8 format=3 uid="uid://cs7wewfd7ewd1"]
 
-[ext_resource type="Script" path="res://Scripts/Projectiles/BananaProjectile.gd" id="1_0uv52"]
+[ext_resource type="Script" path="res://Scripts/Projectiles/banana_projectile.gd" id="1_qcv4d"]
 [ext_resource type="Texture2D" uid="uid://n4cbfoyhtb1" path="res://Free/Items/Fruits/Bananas.png" id="2_f622g"]
-[ext_resource type="Script" path="res://Scripts/Projectiles/Projectile.gd" id="3_362l7"]
+[ext_resource type="Script" path="res://Scripts/Projectiles/projectile.gd" id="3_2xq7r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cd5ll"]
 radius = 6.32456
@@ -30,7 +30,7 @@ animations = [{
 process_mode = 3
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_0uv52")
+script = ExtResource("1_qcv4d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BananaProjectile"]
 scale = Vector2(3, 3)
@@ -45,7 +45,7 @@ frame_progress = 0.0218955
 [node name="Projectile" type="RigidBody2D" parent="." groups=["projectiles"]]
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("3_362l7")
+script = ExtResource("3_2xq7r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile"]
 shape = SubResource("CircleShape2D_e7gu0")

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # Used to generate the attacks we want our player to have
-const AttackCommandScript = preload("res://Scripts/Player/AttackCommands.gd")
+const attack_command_script = preload("res://Scripts/Player/attack_commands.gd")
 
 # Ability values, feel free to mess around with these
 const SPEED = 400.0
@@ -17,19 +17,19 @@ var wall_pushing = false
 var was_wall_jumping = false
 
 # Variable holding the Attack our player has
-var Attack
+var attack
 
 # A way for other nodes to know which direction player is facing
-var lookingAt = 1
+var looking_at = 1
 
 
 func _ready():
 	# Initialize the attack
-	Attack = AttackCommandScript.new().BananaAttack.new()
+	attack = attack_command_script.new().banana_attack.new()
 	
 	# We want to add it as a child first before doing anything with it
-	add_child(Attack)
-	Attack.Initialize("none")
+	add_child(attack)
+	attack.Initialize("none")
 # Player Functions
 func _physics_process(delta):
 
@@ -53,7 +53,7 @@ func _physics_process(delta):
 	
 	# TODO: determine when the attack should not execute
 	if (Input.is_action_just_pressed("Attack")):
-		Attack.Execute()
+		attack.Execute()
 	
 	if direction:
 		velocity.x = move_toward(velocity.x, direction * SPEED, 50) # Get input direction and increase velocity accordingly, used for x-axis movement
@@ -108,10 +108,10 @@ func _physics_process(delta):
 		
 	if velocity.x > 0:
 		$Sprite2D.flip_h = false
-		lookingAt = 1
+		looking_at = 1
 	if velocity.x < 0:
 		$Sprite2D.flip_h = true
-		lookingAt = -1
+		looking_at = -1
 		
 	print(velocity.x)
 		

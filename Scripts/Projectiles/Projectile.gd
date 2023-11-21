@@ -2,12 +2,12 @@ extends RigidBody2D
 
 # Base projectile object inherited by other projectile.
 # Should be added as a child node before manipulating
-class_name Projectile
+class_name projectile
 
-var Direction
-var Speed
+var direction
+var speed
 # Unimplemented yet
-var Damage
+var damage
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,9 +19,9 @@ func _ready():
 # _speed, multiplied to the direction vector to give its velocity
 # _damage, unimplemented
 func Initialize(_direction : Vector2, _speed : float, _damage: int ):
-	Direction = _direction
-	Speed = _speed
-	Damage = _damage
+	direction = _direction
+	speed = _speed
+	damage = _damage
 	
 	add_to_group("projectiles", true)
 	
